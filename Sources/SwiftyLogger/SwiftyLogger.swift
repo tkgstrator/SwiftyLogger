@@ -27,6 +27,10 @@ public enum SwiftyLogger {
       .appendingPathComponent("swiftylogger.log", isDirectory: false)
   }()
 
+  public static var logFile: Data? {
+    try? .init(contentsOf: baseURL)
+  }
+
   public static func configure(
     format: String = "$DHH:mm:ss$d $L: $M",
     logFileAmount: Int = 10,
