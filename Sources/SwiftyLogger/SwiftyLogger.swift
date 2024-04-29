@@ -30,12 +30,14 @@ public enum SwiftyLogger {
         logFileAmount: Int = 10,
         logFileMaxSize: Int = 1 * 1_024 * 1_024
     ) {
-        logger.addDestination(.file(baseURL: baseURL, minLevel: .debug))
+        logger.addDestination(FileDestination(url: baseURL, minLevel: .debug, colored: false))
 #if targetEnvironment(simulator) || DEBUG
-        logger.addDestination(.console)
+        logger.addDestination(ConsoleDestination(minLevel: .verbose, useNSLog: true, useTerminalColors: true))
 #endif
     }
     
+    /// deletes log file.
+    /// returns true if file was removed or does not exist, false otherwise
     @discardableResult
     public static func deleteLogFile() -> Bool {
         guard let destination: FileDestination = logger.destinations.compactMap({ $0 as? FileDestination }).first else {
