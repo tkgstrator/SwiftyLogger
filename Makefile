@@ -6,6 +6,6 @@ lint:
 docs:
 	swift package generate-documentation
 
-.PHONY: format:
+.PHONY: format
 format:
-	swift run -c release swift-format -r Sources - i
+	swift run -c release swift-format -r Sources -i
