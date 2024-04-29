@@ -21,7 +21,8 @@ extension FileDestination {
 #else
             return .warning
 #endif
-        }()
+        }(),
+        colored: Bool = false
     ) {
         self.init()
         self.logFileURL = url
@@ -29,5 +30,6 @@ extension FileDestination {
         self.logFileMaxSize = logFileAmount
         self.format = format
         self.minLevel = minLevel
+        self.colored = colored
     }
 }
