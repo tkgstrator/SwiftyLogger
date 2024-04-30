@@ -34,12 +34,15 @@ public enum SwiftyLogger {
   public static func configure(
     format: String = "$DHH:mm:ss$d $L: $M",
     logFileAmount: Int = 10,
-    logFileMaxSize: Int = 1 * 1_024 * 1_024
+    logFileMaxSize: Int = 1 * 1_024 * 1_024,
+    useNSLog: Bool = false,
+    userTerminalColors: Bool = false,
+    colored: Bool = false
   ) {
-    logger.addDestination(FileDestination(url: baseURL, minLevel: .debug, colored: false))
+    logger.addDestination(FileDestination(url: baseURL, minLevel: .debug, colored: colored))
     #if targetEnvironment(simulator) || DEBUG
       logger.addDestination(
-        ConsoleDestination(minLevel: .verbose, useNSLog: true, useTerminalColors: true))
+        ConsoleDestination(minLevel: .verbose, useNSLog: useNSLog, useTerminalColors: userTerminalColors))
     #endif
   }
 
