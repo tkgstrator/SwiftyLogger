@@ -27,7 +27,7 @@ let package = Package(
                 "SwiftyBeaver",
             ],
             plugins: [
-                .plugin(name: "SwiftLintPlugin", package: "SwiftLint"),
+                .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"),
             ]),
         .testTarget(
             name: "SwiftyLoggerTests",
